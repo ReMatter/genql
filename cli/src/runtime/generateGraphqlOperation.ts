@@ -19,7 +19,7 @@ export interface Variables {
 
 export interface Context {
     root: LinkedType
-    varCounter: number
+    varCounter: Record<string, number>
     variables: Variables
     fragmentCounter: number
     fragments: string[]
@@ -49,8 +49,11 @@ const parseRequest = (
         const field = getFieldFromPath(ctx.root, path)
 
         const argStrings = argNames.map((argName) => {
-            ctx.varCounter++
-            const varName = `v${ctx.varCounter}`
+            ctx.varCounter[argName] = (ctx.varCounter[argName] ?? 0) + 1
+
+            const varName = ctx.varCounter[argName] === 1
+              ? argName
+              : `${argName}_${ctx.varCounter}`
 
             const typing = field.args && field.args[argName] // typeMap used here, .args
 
@@ -143,7 +146,7 @@ export const generateGraphqlOperation = (
 ): GraphqlOperation => {
     const ctx: Context = {
         root: root,
-        varCounter: 0,
+        varCounter: {},
         variables: {},
         fragmentCounter: 0,
         fragments: [],
