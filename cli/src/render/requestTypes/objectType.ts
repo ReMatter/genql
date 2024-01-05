@@ -17,6 +17,20 @@ import { requestTypeName } from './requestTypeName'
 
 const INDENTATION = '    '
 
+const isRequiredField = (
+  field: GraphQLField<any, any>,
+  type: GraphQLObjectType<any, any> | GraphQLInterfaceType,
+) => {
+  const isTotalField =
+    /^total$/i.test(field.name) && /\w+connection$/i.test(type.name)
+
+  const isIdOrEntityIdField =
+    field.name === 'id' ||
+    field.name.toLowerCase() === `${type.name.toLowerCase()}id`
+
+  return isIdOrEntityIdField || isTotalField
+}
+
 export const objectType = (
   type: GraphQLObjectType | GraphQLInterfaceType,
   ctx: RenderContext,
@@ -62,11 +76,10 @@ export const objectType = (
       types.push(requestTypeName(resolvedType))
     }
 
-    const nameTypeConnectionOp =
-      field.name === 'id' ||
-      field.name.toLowerCase() === `${type.name.toLowerCase()}id`
-        ? ':'
-        : '?:'
+    const shouldRequireField =
+      ctx.config?.isRequiredField?.({ field, type }) ?? false
+
+    const nameTypeConnectionOp = shouldRequireField ? ':' : '?:'
 
     return `${fieldComment(field)}${
       field.name
