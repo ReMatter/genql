@@ -61,10 +61,9 @@ const program = yargs
   })
   .option('sort', {
     type: 'boolean',
-    default: false,
     description: 'sort object properties to not create diffs after generations',
   })
-  .option('verbose', { alias: 'v', type: 'boolean', default: false })
+  .option('verbose', { alias: 'v', type: 'boolean' })
   .example(
     '$0 --output ./generated --endpoint http://localhost:3000  -H "Authorization: Bearer xxx"',
     'generate the client from an endpoint',
