@@ -54,7 +54,7 @@ type HandleObject<SRC extends Anify<DST>, DST> = SRC extends Nil
             : FieldsSelection<SRC[Key], NonNullable<DST[Key]>>
           : SRC[Key]
       },
-      Exclude<keyof DST, FieldsToRemove>
+      Exclude<keyof DST, FieldsToRemove | Exclude<keyof DST, keyof SRC>>
       //   {
       //       // remove falsy values
       //       [Key in keyof DST]: DST[Key] extends false | 0 ? never : Key
