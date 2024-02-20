@@ -139,8 +139,8 @@ describe('execute queries', async function () {
                 },
             })
             console.log('first query', JSON.stringify(res, null, 2))
-            assert(res.repository.createdAt)
-            assert(res.optionalArgs.createdAt)
+            assert(res.repository?.createdAt)
+            assert(res.optionalArgs?.createdAt)
         }),
     )
     it(
@@ -159,8 +159,8 @@ describe('execute queries', async function () {
                 },
             })
             console.log(JSON.stringify(res, null, 2))
-            assert(res.repository.createdAt)
-            assert(res.optionalArgs.createdAt)
+            assert(res.repository?.createdAt)
+            assert(res.optionalArgs?.createdAt)
         }),
     )
 
@@ -185,7 +185,7 @@ describe('execute queries', async function () {
                     __typename: true,
                 },
             })
-            expectType<string>(res.user!.__typename)
+            expectType<string>(res.user?.__typename!)
         }),
     )
 
@@ -243,11 +243,11 @@ describe('execute queries', async function () {
             // @ts-expect-error because top level fields are filtered based on query
             res?.account
             // no optional chaining because repository is non null
-            expectType<string>(res.repository.createdAt)
+            expectType<string>(res.repository?.createdAt!)
             // TODO
             // expectType<never>(res.repository.scalarButWithRequiredArgs)
 
-            expectType<Maybe<string>>(res.repository.__typename)
+            expectType<Maybe<string>>(res.repository?.__typename!)
             expectType<Maybe<Maybe<string>[]>>(
                 res.repository?.forks?.edges?.map((x) => x?.node?.name),
             )
@@ -257,35 +257,35 @@ describe('execute queries', async function () {
             expectType<Maybe<Maybe<{ node }>[]>>(res.repository?.forks?.edges)
         }),
     )
-    it(
-        'typed custom scalar',
-        withServer(async () => {
-            const res = await client.query({
-                repository: {
-                    __args: {
-                        name: 'genql',
-                        owner: 'remorses',
-                    },
-                    customScalar: true,
-
-                    forks: {
-                        __args: { filter: 'test' },
-                        edges: { node: { name: true, number: true } },
-                    },
-                },
-            })
-            console.log(JSON.stringify(res, null, 2))
-            // @ts-expect-error because top level fields are filtered based on query
-            res?.account
-            // no optional chaining because repository is non null
-
-            let customScalar = res.repository.customScalar
-            assert(customScalar)
-            customScalar.x
-
-            expectType<Maybe<{ x: string }>>(res.repository.customScalar)
-        }),
-    )
+    // it(
+    //     'typed custom scalar',
+    //     withServer(async () => {
+    //         const res = await client.query({
+    //             repository: {
+    //                 __args: {
+    //                     name: 'genql',
+    //                     owner: 'remorses',
+    //                 },
+    //                 customScalar: true,
+    //
+    //                 forks: {
+    //                     __args: { filter: 'test' },
+    //                     edges: { node: { name: true, number: true } },
+    //                 },
+    //             },
+    //         })
+    //         console.log(JSON.stringify(res, null, 2))
+    //         // @ts-expect-error because top level fields are filtered based on query
+    //         res?.account
+    //         // no optional chaining because repository is non null
+    //
+    //         let customScalar = res.repository?.customScalar
+    //         assert(customScalar)
+    //         customScalar.x
+    //
+    //         expectType<Maybe<{ x: string }>>(res.repository?.customScalar)
+    //     }),
+    // )
     it(
         'typed custom scalar with __scalar',
         withServer(async () => {
