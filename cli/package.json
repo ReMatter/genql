@@ -1,6 +1,6 @@
 {
     "name": "@rematter/genql",
-    "version": "7.1.0",
+    "version": "7.1.3",
     "description": "Generate a TypeScript SDK for any GraphQl API",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
