@@ -21,7 +21,7 @@
         "@types/validate-npm-package-name": "^4.0.0"
     },
     "dependencies": {
-        "@genql/cli": "workspace:*",
+        "@rematter/genql": "workspace:*",
         "@types/fs-extra": "^11.0.1",
         "@types/papaparse": "^5.3.7",
         "async-sema": "^3.1.1",

@@ -7,6 +7,7 @@ import {
   GraphQLObjectType,
   isInterfaceType,
 } from 'graphql'
+// noinspection ES6PreferShortImport
 import { ArgMap, Field, FieldMap } from '../../runtime/types'
 import { RenderContext } from '../common/RenderContext'
 import { isEmpty } from './support'
