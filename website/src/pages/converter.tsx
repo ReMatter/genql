@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo'
 import React, { useEffect, useState } from 'react'
 import { Code } from '@app/components/CodeEditor'
 import { parse } from 'graphql'
-import { print } from '@genql/cli/src/printer'
+import { print } from '@rematter/genql/src/printer'
 import { useDebouncedCallback } from 'use-debounce'
 import { BG } from '../constants'
 

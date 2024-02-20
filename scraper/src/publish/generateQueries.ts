@@ -1,4 +1,4 @@
-import { print } from '@genql/cli/src/printer'
+import { print } from '@rematter/genql/src/printer'
 import { GraphQLField, GraphQLNonNull, GraphQLSchema, parse } from 'graphql'
 
 export function generateQueries(p: {

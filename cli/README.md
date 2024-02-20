@@ -36,7 +36,7 @@ First generate your client with the `genql` cli.
 > You can find other cli options [here](https://genql.dev/docs/cli-reference)
 
 ```sh
-npm i -D @genql/cli # cli to generate the client code
+npm i -D @rematter/genql # cli to generate the client code
 genql --schema ./schema.graphql --output ./generated
 ```
 

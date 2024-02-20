@@ -307,7 +307,7 @@ const Page = ({ clients }: InferGetStaticPropsType<typeof getStaticProps>) => (
             <Banner
                 // dark
                 heading='Generate your own graphql SDK in seconds'
-                bullet='@genql/cli'
+                bullet='@rematter/genql'
                 subheading='You can generate the client locally based on an endpoint or a local graphql schema.'
                 bg='transparent'
                 image={

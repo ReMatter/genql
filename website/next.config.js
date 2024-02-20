@@ -3,7 +3,7 @@ const config = {
     experimental: {
         externalDir: true,
     },
-    transpilePackages: ['@genql/cli', 'beskar'],
+    transpilePackages: ['@rematter/genql', 'beskar'],
     rewrites() {
         const rewriteDocsTo =
             'https://aeea2a8f-f718-4d46.docs-base-path.notaku.site'
