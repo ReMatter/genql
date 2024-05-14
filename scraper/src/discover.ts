@@ -5,7 +5,7 @@ import { red } from 'kleur'
 import {
     fetchSchema,
     fetchSchemaWithRetry,
-} from '@genql/cli/src/schema/fetchSchema'
+} from '@rematter/genql/src/schema/fetchSchema'
 
 import {
     CsvDataType,

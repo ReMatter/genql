@@ -1,4 +1,4 @@
-const withTM = require('next-transpile-modules')(['@genql/cli', 'beskar'])
+const withTM = require('next-transpile-modules')(['@rematter/genql', 'beskar'])
 
 /** @type {import('next').NextConfig} */
 const config = {

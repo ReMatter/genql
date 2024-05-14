@@ -33,7 +33,7 @@ Added `enumGraphqlEnumName` exports to get access to enum strings
 
 ## 2.3.3
 
--   `genql-cli` package becomes `@genql/cli`
+-   `genql-cli` package becomes `@rematter/genql`
 -   `genql-runtime` package becomes `@genql/runtime`
 -   headers can be an async function
 -   you can now add an operation name to a query using `__name`
@@ -45,4 +45,4 @@ Added `enumGraphqlEnumName` exports to get access to enum strings
 -   smaller `types.js` and hence smaller bundle size
 -   made the website page converter to convert from graphql queries to genql code: https://genql.dev/converter
 -   custom `fetcher` now has type `(operation: GraphqlOperation | GraphqlOperation[], ) => Promise<ExecutionResult>` to support built in batching
--   added a `@genql/cli/printer` module to print a graphql query AST to genql code
+-   added a `@rematter/genql/printer` module to print a graphql query AST to genql code

@@ -1,7 +1,7 @@
 import { exec } from 'child_process'
 import validatePackageName from 'validate-npm-package-name'
 
-import { generate } from '@genql/cli/src/main'
+import { generate } from '@rematter/genql/src/main'
 import { promises as fs } from 'fs'
 import fsx from 'fs-extra'
 import { lexicographicSortSchema } from 'graphql'
@@ -10,7 +10,7 @@ import resolve from 'resolve'
 import tmp from 'tmp-promise'
 import { NPM_SCOPE, websiteUrl } from '../constants'
 
-import { fetchSchemaWithRetry } from '@genql/cli/src/schema/fetchSchema'
+import { fetchSchemaWithRetry } from '@rematter/genql/src/schema/fetchSchema'
 import { generateQueries } from './generateQueries'
 
 function generateReadme({ slug, host, queriesCode }) {

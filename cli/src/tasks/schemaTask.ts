@@ -16,23 +16,7 @@ export const schemaTask = (config: Config): ListrTask => {
         return schema
     }
 
-    if (config.endpoint) {
-        const endpoint = config.endpoint
-        return {
-            title: `fetching schema using ${
-                config.useGet ? 'GET' : 'POST'
-            } ${endpoint} and headers ${JSON.stringify(config.headers)}`,
-            task: async (ctx) => {
-                ctx.schema = processSchema(
-                    await fetchSchema({
-                        endpoint,
-                        usePost: !config.useGet,
-                        headers: config.headers,
-                    }),
-                )
-            },
-        }
-    } else if (config.schema) {
+    if (config.schema) {
         const schema = config.schema
         return {
             title: 'loading schema',
@@ -40,7 +24,7 @@ export const schemaTask = (config: Config): ListrTask => {
                 // const options = config.options && config.options.schemaBuild
                 const document = await loadSchema(schema, {
                     loaders: [new GraphQLFileLoader()],
-                    
+
                 })
                 ctx.schema = processSchema(document)
 
@@ -54,6 +38,22 @@ export const schemaTask = (config: Config): ListrTask => {
                         return
                     throw e
                 }
+            },
+        }
+    } else if (config.endpoint) {
+        const endpoint = config.endpoint
+        return {
+            title: `fetching schema using ${
+              config.useGet ? 'GET' : 'POST'
+            } ${endpoint} and headers ${JSON.stringify(config.headers)}`,
+            task: async (ctx) => {
+                ctx.schema = processSchema(
+                  await fetchSchema({
+                      endpoint,
+                      usePost: !config.useGet,
+                      headers: config.headers,
+                  }),
+                )
             },
         }
     } else {

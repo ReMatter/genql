@@ -1,4 +1,4 @@
-import { fetchSchemaWithRetry } from '@genql/cli/src/schema/fetchSchema'
+import { fetchSchemaWithRetry } from '@rematter/genql/src/schema/fetchSchema'
 import { Sema } from 'async-sema'
 import { createHash } from 'crypto'
 import { GraphQLSchema, lexicographicSortSchema, printSchema } from 'graphql'

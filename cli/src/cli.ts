@@ -120,7 +120,7 @@ generate(config)
   })
   .then(() => {
     printHelp({
-      dirPath: program.output,
+      dirPath: config.output,
     })
   })
 
