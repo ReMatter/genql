@@ -53,7 +53,7 @@ const parseRequest = (
 
             const varName = ctx.varCounter[argName] === 1
               ? argName
-              : `${argName}_${ctx.varCounter}`
+              : `${argName}_${ctx.varCounter[argName]}`
 
             const typing = field.args && field.args[argName] // typeMap used here, .args
 
